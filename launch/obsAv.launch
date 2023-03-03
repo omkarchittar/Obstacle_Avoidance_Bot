@@ -1,0 +1,19 @@
+<launch>
+  
+  <include file="$(find turtlebot3_gazebo)/launch/turtlebot3_world.launch">
+    <arg name="x_pos" default="2.0"/>
+    <arg name="y_pos" default="-0.5"/>
+    <arg name="z_pos" default="0.0"/>
+  </include>
+
+  <node name="robot_state_publisher" output="screen" pkg="robot_state_publisher" respawn="false" type="robot_state_publisher">
+  </node>
+  
+  <node name="joint_state_publisher" output="screen"    pkg="joint_state_publisher" respawn="false" type="joint_state_publisher">
+  </node>
+
+  <node type="rviz" name="rviz" pkg="rviz" args="-d $(find obsAv)/rviz/obsAv.rviz"/>
+
+  <node name="bot" pkg="obsAv" type="obsAv" output="screen"/>
+
+</launch>
